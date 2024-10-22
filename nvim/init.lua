@@ -11,6 +11,8 @@ opt.compatible = false
 
 -- Enable true colour support
 opt.termguicolors = true
+opt.background = "dark"
+cmd("colorscheme gruvbox")
 
 -- See :h <option> to see what the options do
 

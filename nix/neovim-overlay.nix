@@ -58,7 +58,7 @@ with final.pkgs.lib; let
     nvim-navic # Add LSP location to lualine | https://github.com/SmiteshP/nvim-navic
     statuscol-nvim # Status column | https://github.com/luukvbaal/statuscol.nvim/
     nvim-treesitter-context # nvim-treesitter-context
-    vim-dim # Use terminal color settings | https://github.com/jeffkreeftmeijer/vim-dim
+    gruvbox-nvim # https://github.com/ellisonleao/gruvbox.nvim/
     # ^ UI
     # language support
     # ^ language support
