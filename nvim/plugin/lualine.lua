@@ -3,55 +3,27 @@ if vim.g.did_load_lualine_plugin then
 end
 vim.g.did_load_lualine_plugin = true
 
--- local navic = require('nvim-navic')
--- navic.setup {}
-
----Indicators for special modes,
----@return string status
-local function extra_mode_status()
-  -- recording macros
-  local reg_recording = vim.fn.reg_recording()
-  if reg_recording ~= '' then
-    return ' @' .. reg_recording
-  end
-  -- executing macros
-  local reg_executing = vim.fn.reg_executing()
-  if reg_executing ~= '' then
-    return ' @' .. reg_executing
-  end
-  -- ix mode (<C-x> in insert mode to trigger different builtin completion sources)
-  local mode = vim.api.nvim_get_mode().mode
-  if mode == 'ix' then
-    return '^X: (^]^D^E^F^I^K^L^N^O^Ps^U^V^Y)'
-  end
-  return ''
-end
 
 require('lualine').setup {
-  globalstatus = true,
-  sections = {
-    lualine_c = {
-      -- nvim-navic
-      -- { navic.get_location, cond = navic.is_available },
-    },
-    lualine_z = {
-      -- (see above)
-      -- { extra_mode_status },
-    },
-  },
   options = {
+    globalstatus = true,
+    icons_enabled = true,
     theme = 'auto',
     section_separators = '',
     component_separators = ''
   },
+
+  sections = {
+    lualine_a = { 'mode' },
+    lualine_b = { 'branch', 'diff', 'diagnostics' },
+    lualine_c = { 'filename' },
+    lualine_x = { 'encoding', 'fileformat', 'filetype' },
+    lualine_y = { 'progress' },
+    lualine_z = { 'location' }
+  },
   -- Example top tabline configuration (this may clash with other plugins)
   tabline = {
-    lualine_a = {
-      {
-        'tabs',
-        mode = 1,
-      },
-    },
+    lualine_a = { { 'tabs', mode = 1, }, },
     lualine_z = {
       {
         'buffers',
@@ -65,7 +37,7 @@ require('lualine').setup {
         },
         buffers_color = {
           -- Same values as the general color option can be used here.
-          active = 'lualine_b_normal', -- Color for active buffer.
+          active = 'lualine_b_normal',     -- Color for active buffer.
           inactive = 'lualine_b_inactive', -- Color for inactive buffer.
         },
       },
