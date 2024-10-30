@@ -118,6 +118,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
       })
       vim.lsp.codelens.refresh { bufnr = bufnr }
     end
+
+    -- Auto format on save
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.format { async = false }
+      end,
+    })
   end,
 })
 
