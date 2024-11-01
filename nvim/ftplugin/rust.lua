@@ -19,6 +19,9 @@ vim.lsp.start {
   capabilities = require('user.lsp').make_client_capabilities(),
   on_attach = on_attach,
   settings = {
+    -- https://rust-analyzer.github.io/manual.html#nvim-lsp
+    -- https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/configs
+    -- https://github.com/rust-lang/rust-analyzer/blob/master/docs/user/generated_config.adoc
     ["rust-analyzer"] = {
       imports = {
         granularity = {
