@@ -120,12 +120,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     -- Auto format on save
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      callback = function()
-        vim.lsp.buf.format { async = false, id = ev.data.client }
-      end,
-    })
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+
+    if client.supports_method('textDocument/formatting') then
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format { async = false, id = client.id }
+        end,
+      })
+    end
   end,
 })
 

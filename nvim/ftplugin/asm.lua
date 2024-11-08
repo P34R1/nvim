@@ -3,8 +3,9 @@ if vim.fn.executable("asm-lsp") ~= 1 then
 end
 
 local root_files = {
-  'build.fish',
-  'justfile',
+  '.asm-lsp.toml',
+  -- 'build.fish',
+  -- 'justfile',
   '.gitignore',
   '.git',
 }
@@ -15,8 +16,10 @@ vim.lsp.start {
   root_dir = vim.fs.dirname(vim.fs.find(root_files, { upward = true })[1]),
   capabilities = require('user.lsp').make_client_capabilities(),
   settings = {
-    nasm = {
-
+    ['asm-lsp'] = {
+      -- formatting = {
+      --   command = { "nasmfmt" },
+      -- },
     },
   },
 }
