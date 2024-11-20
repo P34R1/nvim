@@ -120,8 +120,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     -- Auto format on save
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-
     if client.supports_method('textDocument/formatting') then
       vim.api.nvim_create_autocmd("BufWritePre", {
         buffer = bufnr,
