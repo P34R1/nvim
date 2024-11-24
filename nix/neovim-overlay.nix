@@ -64,8 +64,8 @@ let
     gruvbox-nvim # https://github.com/ellisonleao/gruvbox.nvim/
     # ^ UI
     # language support
-    # nvim-treesitter-parsers.java
     nvim-jdtls
+    rustaceanvim
     # ^ language support
     # navigation/editing enhancement plugins
     vim-unimpaired # predefined ] and [ navigation keymaps | https://github.com/tpope/vim-unimpaired/
