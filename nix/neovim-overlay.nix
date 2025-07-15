@@ -20,6 +20,19 @@ let
   # This is the helper function that builds the Neovim derivation.
   mkNeovim = pkgs.callPackage ./mkNeovim.nix { inherit pkgs-wrapNeovim; };
 
+  supermdGrammar = pkgs.tree-sitter.buildGrammar {
+    version = "e153cca";
+    language = "supermd";
+
+    location = "tree-sitter/supermd";
+    src = pkgs.fetchFromGitHub {
+      owner = "kristoff-it";
+      repo = "supermd";
+      rev = "e153cca96a9defea46872f9a7e980008ef6c8cdb";
+      hash = "sha256-N3VUvrEJ0qiTipt8u9Zxfolr9f65HYkz20NEMppx26A=";
+    };
+  };
+
   # A plugin can either be a package or an attrset, such as
   # { plugin = <plugin>; # the package, e.g. pkgs.vimPlugins.nvim-cmp
   #   config = <config>; # String; a config that will be loaded with the plugin
@@ -31,7 +44,7 @@ let
   all-plugins = with pkgs.vimPlugins; [
     # plugins from nixpkgs go in here.
     # https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=vimPlugins
-    nvim-treesitter.withAllGrammars
+    (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars ++ [ supermdGrammar ]))
     luasnip # snippets | https://github.com/l3mon4d3/luasnip/
     # nvim-cmp (autocompletion) and extensions
     nvim-cmp # https://github.com/hrsh7th/nvim-cmp
