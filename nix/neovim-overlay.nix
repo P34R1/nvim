@@ -64,6 +64,7 @@ with final.pkgs.lib; let
     # ^ UI
     # language support
     rustaceanvim # https://github.com/mrcjkb/rustaceanvim/
+    zig-vim # https://codeberg.org/ziglang/zig.vim/
     # ^ language support
     # navigation/editing enhancement plugins
     vim-unimpaired # predefined ] and [ navigation keymaps | https://github.com/tpope/vim-unimpaired/
